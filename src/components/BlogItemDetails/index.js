@@ -15,12 +15,15 @@ class BlogItemDetails extends Component {
     this.getBlogDetails()
   }
 
+  //here we make api call for individual blog data
   getBlogDetails = async () => {
+    // here we getting the id of each blog item using (this.props)
     const {match} = this.props
     const {params} = match
     const {id} = params
-    const responsive = await fetch(`https://apis.ccbp.in/blogs/${id}`)
+    const responsive = await fetch(`https://apis.ccbp.in/blogs/${id}`) //update the id
     const data = await responsive.json()
+  // convert the snake_case to camelCase
     const updatedData = {
       id: data.id,
       imageUrl: data.image_url,
@@ -29,12 +32,12 @@ class BlogItemDetails extends Component {
       topic: data.topic,
       author: data.author,
     }
-    this.setState({blogData: updatedData, isLoading: false})
+    this.setState({blogData: updatedData, isLoading: false}) //updating the api data
   }
 
   renderBlogItemDetails = () => {
-    const {blogData} = this.state
-    const {title, imageUrl, content, avatarUrl, author} = blogData // this blogdata is set to the statefeild
+    const {blogData} = this.state //getting the updated data
+    const {title, imageUrl, content, avatarUrl, author} = blogData // object destructuring for blogData
     return (
       <div className="blog-info">
         <h2 className="blog-details-title">{title}</h2>
@@ -51,7 +54,7 @@ class BlogItemDetails extends Component {
   }
 
   render() {
-    const {isLoading} = this.state
+    const {isLoading} = this.state //loader is added 
     return (
       <div className="blog-container">
         {isLoading ? (
