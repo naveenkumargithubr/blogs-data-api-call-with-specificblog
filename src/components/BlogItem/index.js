@@ -6,6 +6,7 @@ const BlogItem = props => {
   const {blogData} = props
   const {id, imageUrl, topic, title, avatarUrl, author} = blogData
   return (
+    //here the blogItem is wrapped with the link route beacause we create a path for each blogItem
     <Link to={`/blogs/${id}`} className="blog-item-link">
       <div className="item-container">
         <img className="item-image" src={imageUrl} alt={`item${id}`} />
